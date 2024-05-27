@@ -1,5 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using Backend.Data;
+using Microsoft.EntityFrameworkCore;
+using Backend.Services;
+using Backend.Models;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 /* -------------Configuracion del Cors ------------------------- */
@@ -13,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 /* ------------ AÑADIR INTERFACES --------------- */
+builder.Services.AddScoped< IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<BaseCuponesContext> (options =>
 options.UseMySql(
