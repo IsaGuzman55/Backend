@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 /* -------------Configuracion del Cors ------------------------- */
 builder.Services.AddCors(options => options.AddPolicy("allowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
+
+
 builder.Services.AddControllers();
 
 // Add services to the container.
@@ -19,6 +21,7 @@ options.UseMySql(
     builder.Configuration.GetConnectionString("MySqlConnection"),
     Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")
 ));
+    builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 

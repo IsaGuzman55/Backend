@@ -11,6 +11,7 @@ namespace Backend.Data
     {
         public BaseCuponesContext(DbContextOptions<BaseCuponesContext> options) : base(options){
         }
+        public DbSet<Customer> Customers { get; set; }
     }
     
 }
