@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Backend.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 /* -------------Configuracion del Cors ------------------------- */
 builder.Services.AddCors(options => options.AddPolicy("allowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
@@ -19,6 +20,8 @@ options.UseMySql(
     builder.Configuration.GetConnectionString("MySqlConnection"),
     Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")
 ));
+
+builder.Services.AddScoped<IDiscountTypesRepository, DiscountTypesRepository>();
 
 var app = builder.Build();
 
